@@ -1,0 +1,17 @@
+{
+  "name": "Post to Google Buzz (by Google)",
+  "version" : "1.0.0.4",
+  "icons" : {
+    "16" : "buzz-little.png",
+    "128" : "buzz-big.png"
+  },
+  "background_page" : "background.html",
+  "browser_action": {
+      "default_icon" : "buzz-little.png",
+      "default_title" : "Post to Google Buzz" 
+    },
+  "permissions" : [
+    "tabs",
+    "http://www.google.com/buzz/api/buzzThis/buzzCounter"
+    ]
+}

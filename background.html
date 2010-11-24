@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script>
+      chrome.browserAction.onClicked.addListener(function (t) {
+          chrome.tabs.create(
+            {"url" : "http://www.google.com/buzz/post?url=" + encodeURI(t.url) });
+            
+            setTimeout(getNewInfo(t.id), 5000); // Refresh the count.
+      });
+      
+      chrome.tabs.onSelectionChanged.addListener(getNewInfo);
+      chrome.tabs.onUpdated.addListener(getNewInfo);
+      
+      function getNewInfo(t, info) {
+        chrome.tabs.get(t, function(tab) { 
+          var url = "http://www.google.com/buzz/api/buzzThis/buzzCounter?url=" + encodeURI(tab.url);
+          
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+              var response = xhr.responseText;
+              var matches = /google_buzz_set_count\((.+?)\);/;
+              var results = response.match(matches);
+              if(results) {
+                var count = google_buzz_set_count(tab, JSON.parse(results[1]));
+              }
+            }
+          }; 
+          xhr.open("GET", url);
+          xhr.send();
+        });
+      }
+      
+      function google_buzz_set_count(tab, data) {
+        if(data[tab.url] != undefined && data[tab.url] != "undefined") {
+          chrome.browserAction.setBadgeText({ "text" : data[tab.url] + "", "tabId" :tab.id });
+        }
+      }
+    </script>
+  </head>
+</html>

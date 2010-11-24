@@ -1,6 +1,6 @@
 {
-  "name": "Post to Google Buzz (by Google)",
-  "version" : "1.0.0.4",
+  "name": "Post to Google Buzz",
+  "version" : "1.0.0.5",
   "icons" : {
     "16" : "buzz-little.png",
     "128" : "buzz-big.png"

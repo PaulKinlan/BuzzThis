@@ -1,6 +1,6 @@
 {
   "name": "Post to Google Buzz",
-  "version" : "1.0.0.5",
+  "version" : "1.0.0.6",
   "icons" : {
     "16" : "buzz-little.png",
     "128" : "buzz-big.png"
@@ -12,6 +12,7 @@
     },
   "permissions" : [
     "tabs",
+    "contextMenus",
     "http://www.google.com/buzz/api/buzzThis/buzzCounter"
     ]
 }
